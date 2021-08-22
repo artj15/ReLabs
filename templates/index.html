@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New site!</title>
+    <link href="{{ url_for('static', path = '/styles.css') }}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="javascript">
+    {% for mes in messages %}
+    $.each({{ messages[mes] }}, function(i, item) {
+    $('<tr>').html("<td>" + {{ messages[mes].text }} + "</td><td>" + {{ messages[mes].num }} + "</td><td>").appendTo('#records_table');
+    });
+    {% endfor %}
+    
+    $('#button_id').on('click', function(e) {
+    $.ajax({
+        url : yourUrl,
+        type : 'GET',
+        dataType : 'json',
+        success : function(data) {
+            $('#records_table tbody').append("<tr><td>" + data.column1 + "</td><td>" + data.column2 + "</td><td>" + data.column3 + "</td></tr>");
+        },
+        error : function() {
+            console.log('error');
+        }
+    });
+    });
+
+
+</script>
+
+<table id="added-articles" class="records_table">
+    <thead>
+    <td>Сообщение</td>
+    <td>№</td>
+    </thead>
+    <tbody>
+{#    {% for mes in messages %}#}
+{#        <tr>#}
+{#            <td>#}
+{#                {{ messages[mes].text }}#}
+{#            </td>#}
+{#            <td>#}
+{#                {{ messages[mes].num }}#}
+{#            </td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+    </tbody>
+</table>
+{#<form action="/" method="post">#}
+{#    <p><b>Введите ваше сообщение:</b></p>#}
+{#    <p><textarea name="message"></textarea></p>#}
+{#    <p><input type="submit"></p>#}
+{#</form>#}
+</body>
+</html>
+
+
