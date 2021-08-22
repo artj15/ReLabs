@@ -10,7 +10,6 @@ router = APIRouter()
 templates = Jinja2Templates('templates')
 
 
-
 @router.get('/')
 def index(request: Request):
     num = 0
@@ -20,7 +19,6 @@ def index(request: Request):
     }
     }
     return templates.TemplateResponse('index.html', {'request': request, 'messages': messages})
-
 
 # @router.post('/')
 # async def create_message(message: str = Form(...)):

@@ -10,7 +10,6 @@ html = """
 <html>
     <head>
         <title>Chat</title>
-        <link href="{{ url_for('static', path = '/styles.css') }}" rel="stylesheet">
     </head>
     <body>
         <h1>WebSocket Chat</h1>
@@ -59,9 +58,8 @@ async def websocket_endpoint(websocket: WebSocket):
         num += 1
         if len(data) == 0:
             data = ' '
-        #await websocket.send_text(f"{data} {str(num)}")#, websocket.send_text()
+        # await websocket.send_text(f"{data} {str(num)}")#, websocket.send_text()
         await websocket.send_json(data + ' ' + str(num))
-
 
 
 if __name__ == '__main__':
