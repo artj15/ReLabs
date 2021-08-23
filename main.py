@@ -3,7 +3,6 @@ from fastapi import FastAPI, WebSocket
 from fastapi.responses import HTMLResponse
 
 app = FastAPI()
-num = 0
 total_data = {}
 
 
@@ -47,15 +46,15 @@ html = """
 
 @app.get("/")
 async def get():
-    global num
-    num = 0
+
     print(total_data)
     return HTMLResponse(html)
 
 
 @app.websocket("/ws")
 async def websocket_endpoint(websocket: WebSocket):
-    global num, total_data
+    num = 0
+    global total_data
     await websocket.accept()
     while True:
         data = await websocket.receive_text()
