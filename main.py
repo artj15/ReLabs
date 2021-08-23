@@ -5,8 +5,6 @@ from fastapi.responses import HTMLResponse
 app = FastAPI()
 total_data = {}
 
-
-
 html = """
 <!DOCTYPE html>
 <html>
@@ -46,8 +44,6 @@ html = """
 
 @app.get("/")
 async def get():
-
-    print(total_data)
     return HTMLResponse(html)
 
 
@@ -64,8 +60,6 @@ async def websocket_endpoint(websocket: WebSocket):
             "message": data
         }
         await websocket.send_json(data + ' ' + str(num))
-
-
 
 
 if __name__ == '__main__':
